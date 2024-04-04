@@ -73,7 +73,7 @@ class _ContactScreenState extends State<ContactScreen> {
               ),
               _image == null
                   ? const Text('No Image Selected.')
-                  : Image.file(_image!)
+                  : Image.file(_image!),
             ],
           ),
         ));
