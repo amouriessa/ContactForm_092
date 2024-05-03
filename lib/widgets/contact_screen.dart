@@ -103,7 +103,7 @@ class _ContactScreenState extends State<ContactScreen> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()),
+                                  builder: (context) => const HomeView()),
                               (route) => false);
                         }
                       },
