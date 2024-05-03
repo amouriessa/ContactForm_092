@@ -7,7 +7,7 @@ import 'package:contact_form/service/contact_service.dart';
 
 
 class ContactController {
-  final contactService = ContactService();
+  final ContactService _service = ContactService();
 
   Future<Map<String, dynamic>> addPerson(Contact person, File? file) async {
     Map<String, String> data = {
@@ -18,7 +18,7 @@ class ContactController {
     };
 
     try {
-      var response = await contactService.addPerson(data, file);
+      var response = await _service.addPerson(data, file);
 
       if (response.statusCode == 201) {
         return {
@@ -46,6 +46,18 @@ class ContactController {
         'success': false,
         'message': 'There is an error! $e',
       };
+    }
+  }
+
+  Future<List<Contact>> getPeople() async{
+    try{
+      List<dynamic> peopleData = await _service.fetchPeople();
+      List<Contact> people = 
+            peopleData.map((json) => Contact.fromMap(json)).toList();
+      return people;
+    }catch(e){
+      print(e);
+      throw Exception('Failed to get people');
     }
   }
 }
